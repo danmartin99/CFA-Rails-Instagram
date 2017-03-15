@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @post.description %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @post.user.email %>
+</p>
+<img src="<%= @post.post_image %>" alt="post">
+
+
+
+<% if current_user.follows?(@post.user) %>
+  <%= link_to 'Unfollow', toggle_follow_post_path(user_id: @post.user_id) %>
+<% else %>
+  <%= link_to 'Follow', toggle_follow_post_path(user_id: @post.user_id) %>
+<% end %>
+
+
+<%link_to @like_status, toggle_like_post_path %>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>
